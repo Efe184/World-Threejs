@@ -6,6 +6,18 @@ Interactive 3D Earth visualization built with THREE.js and Vite.
 
 [![Planet Viewer Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=github)](https://efe184.github.io/world-threejs/)
 
+## 📸 Screenshots
+
+<div align="center">
+
+### Day View
+![Earth Day View](./public/screenshots/earth-day.png)
+
+### Night View
+![Earth Night View](./public/screenshots/earth-night.png)
+
+</div>
+
 ## ✨ Features
 
 - **Realistic Earth Model** with multiple texture layers

@@ -10,20 +10,24 @@ import { getStarfield } from "./getStarfield.js";
 const w = window.innerWidth;
 const h = window.innerHeight;
 
+// Detect mobile device
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 // Create scene
 const scene = new THREE.Scene();
 
 // Create camera
 const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
-camera.position.z = 5;
+camera.position.z = isMobile ? 6 : 5; // Slightly further back on mobile
 
-// Create renderer
+// Create renderer with mobile optimizations
 const renderer = new THREE.WebGLRenderer({ 
-  antialias: true,
-  alpha: true 
+  antialias: !isMobile, // Disable antialiasing on mobile for better performance
+  alpha: true,
+  powerPreference: isMobile ? 'low-power' : 'high-performance'
 });
 renderer.setSize(w, h);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 2 : 3)); // Limit pixel ratio on mobile
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 
@@ -43,6 +47,17 @@ controls.maxDistance = 15;
 controls.autoRotate = false;
 controls.autoRotateSpeed = 0.5;
 
+// Mobile-specific control adjustments
+if (isMobile) {
+  controls.rotateSpeed = 0.7; // Slower rotation on mobile
+  controls.zoomSpeed = 0.8;
+  controls.enablePan = false; // Disable panning on mobile (can be confusing)
+  controls.touches = {
+    ONE: THREE.TOUCH.ROTATE,
+    TWO: THREE.TOUCH.DOLLY_PAN
+  };
+}
+
 // ==========================================
 // EARTH GROUP
 // ==========================================
@@ -55,7 +70,8 @@ scene.add(earthGroup);
 // GEOMETRY & LOADER
 // ==========================================
 
-const detail = 12; // Higher = smoother sphere
+// Adjust detail level based on device capability
+const detail = isMobile ? 10 : 12; // Lower detail on mobile for better performance
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(1, detail);
 
@@ -118,7 +134,8 @@ earthGroup.add(glowMesh);
 // STARFIELD BACKGROUND
 // ==========================================
 
-const stars = getStarfield({ numStars: 2000 });
+// Reduce star count on mobile for better performance
+const stars = getStarfield({ numStars: isMobile ? 1000 : 2000 });
 scene.add(stars);
 
 // ==========================================
