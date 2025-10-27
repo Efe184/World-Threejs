@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Interactive 3D Earth visualization with realistic textures, clouds, and atmospheric effects. Built with THREE.js and WebGL." />
+    <meta name="theme-color" content="#000000" />
     <title>Planet Viewer - Interactive 3D Earth</title>
     <style>
       * {
@@ -34,6 +36,92 @@
         z-index: 10;
         max-width: 320px;
         transition: all 0.3s ease;
+        pointer-events: none;
+      }
+
+      @media (max-width: 768px) {
+        #info {
+          top: 20px;
+          left: 20px;
+          max-width: 280px;
+        }
+
+        #info h1 {
+          font-size: 22px !important;
+        }
+
+        #info .subtitle {
+          font-size: 10px !important;
+          margin-bottom: 20px !important;
+        }
+
+        #info .section {
+          margin-bottom: 16px !important;
+        }
+
+        #info .control-item {
+          font-size: 12px !important;
+          margin: 6px 0 !important;
+        }
+
+        #info .control-item .key {
+          min-width: 20px !important;
+          height: 20px !important;
+          padding: 0 8px !important;
+          font-size: 11px !important;
+          margin-right: 10px !important;
+        }
+
+        #info .control-item .icon {
+          font-size: 14px !important;
+          margin-right: 10px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #info {
+          top: 15px;
+          left: 15px;
+          right: 15px;
+          max-width: calc(100vw - 30px);
+        }
+
+        #info h1 {
+          font-size: 20px !important;
+        }
+
+        #info .section:last-of-type {
+          display: none;
+        }
+
+        #info .footer {
+          margin-top: 16px !important;
+          font-size: 9px !important;
+        }
+      }
+
+      @media (orientation: landscape) and (max-height: 500px) {
+        #info {
+          top: 10px;
+          left: 10px;
+        }
+
+        #info h1 {
+          font-size: 18px !important;
+          margin-bottom: 4px !important;
+        }
+
+        #info .subtitle {
+          margin-bottom: 12px !important;
+        }
+
+        #info .section {
+          margin-bottom: 12px !important;
+        }
+
+        #info .divider {
+          margin: 12px 0 !important;
+        }
       }
 
       #info h1 {
@@ -134,6 +222,31 @@
         color: #fff;
         font-size: 18px;
         text-align: center;
+        z-index: 1000;
+      }
+
+      @media (max-width: 768px) {
+        #loading {
+          font-size: 16px;
+        }
+
+        .spinner {
+          width: 35px !important;
+          height: 35px !important;
+          border-width: 2.5px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #loading {
+          font-size: 14px;
+        }
+
+        .spinner {
+          width: 30px !important;
+          height: 30px !important;
+          border-width: 2px !important;
+        }
       }
 
       .spinner {
@@ -151,7 +264,7 @@
         100% { transform: rotate(360deg); }
       }
     </style>
-    <script type="module" crossorigin src="/world-threejs/assets/index-C5VOdMSY.js"></script>
+    <script type="module" crossorigin src="/world-threejs/assets/index-C-BhXr6U.js"></script>
   </head>
   <body>
     <div id="info">
