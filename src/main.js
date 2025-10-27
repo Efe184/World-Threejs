@@ -64,9 +64,9 @@ const geometry = new THREE.IcosahedronGeometry(1, detail);
 // ==========================================
 
 const earthMaterial = new THREE.MeshPhongMaterial({
-  map: loader.load("/textures/00_earthmap1k.jpg"),
-  specularMap: loader.load("/textures/02_earthspec1k.jpg"),
-  bumpMap: loader.load("/textures/01_earthbump1k.jpg"),
+  map: loader.load("./textures/00_earthmap1k.jpg"),
+  specularMap: loader.load("./textures/02_earthspec1k.jpg"),
+  bumpMap: loader.load("./textures/01_earthbump1k.jpg"),
   bumpScale: 0.04,
 });
 
@@ -78,7 +78,7 @@ earthGroup.add(earthMesh);
 // ==========================================
 
 const lightsMaterial = new THREE.MeshBasicMaterial({
-  map: loader.load("/textures/03_earthlights1k.jpg"),
+  map: loader.load("./textures/03_earthlights1k.jpg"),
   blending: THREE.AdditiveBlending,
 });
 
@@ -90,11 +90,11 @@ earthGroup.add(lightsMesh);
 // ==========================================
 
 const cloudsMaterial = new THREE.MeshStandardMaterial({
-  map: loader.load("/textures/04_earthcloudmap.jpg"),
+  map: loader.load("./textures/04_earthcloudmap.jpg"),
   transparent: true,
   opacity: 0.8,
   blending: THREE.AdditiveBlending,
-  alphaMap: loader.load("/textures/05_earthcloudmaptrans.jpg"),
+  alphaMap: loader.load("./textures/05_earthcloudmaptrans.jpg"),
 });
 
 const cloudsMesh = new THREE.Mesh(geometry, cloudsMaterial);
@@ -141,11 +141,11 @@ scene.add(ambientLight);
 let loadedTextures = 0;
 const totalTextures = 5;
 
-loader.load("/textures/00_earthmap1k.jpg", () => checkAllLoaded());
-loader.load("/textures/01_earthbump1k.jpg", () => checkAllLoaded());
-loader.load("/textures/02_earthspec1k.jpg", () => checkAllLoaded());
-loader.load("/textures/03_earthlights1k.jpg", () => checkAllLoaded());
-loader.load("/textures/04_earthcloudmap.jpg", () => checkAllLoaded());
+loader.load("./textures/00_earthmap1k.jpg", () => checkAllLoaded());
+loader.load("./textures/01_earthbump1k.jpg", () => checkAllLoaded());
+loader.load("./textures/02_earthspec1k.jpg", () => checkAllLoaded());
+loader.load("./textures/03_earthlights1k.jpg", () => checkAllLoaded());
+loader.load("./textures/04_earthcloudmap.jpg", () => checkAllLoaded());
 
 function checkAllLoaded() {
   loadedTextures++;
