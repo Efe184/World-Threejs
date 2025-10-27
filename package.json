@@ -4,18 +4,25 @@
   "type": "module",
   "description": "Interactive 3D Earth visualization with THREE.js",
   "main": "src/main.js",
+  "homepage": "https://Efe184.github.io/planet-viewer",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "keywords": ["threejs", "3d", "earth", "planet", "visualization"],
   "author": "Efe",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Efe184/planet-viewer.git"
+  },
   "dependencies": {
     "three": "^0.180.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "vite": "^7.1.12"
   }
 }

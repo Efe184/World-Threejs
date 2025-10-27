@@ -2,6 +2,10 @@
 
 Interactive 3D Earth visualization built with THREE.js and Vite.
 
+## 🚀 [Live Demo](https://efe184.github.io/planet-viewer/)
+
+[![Planet Viewer Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=github)](https://efe184.github.io/planet-viewer/)
+
 ## ✨ Features
 
 - **Realistic Earth Model** with multiple texture layers
@@ -103,7 +107,9 @@ planet-viewer/
 
 Earth texture maps from [Planet Pixel Emporium](https://planetpixelemporium.com/earth.html)
 
+## 📝 License
 
+MIT License - Feel free to use this project for learning and development!
 
 ## 🤝 Contributing
 
