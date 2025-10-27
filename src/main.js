@@ -215,24 +215,122 @@ function handleWindowResize() {
 window.addEventListener('resize', handleWindowResize, false);
 
 // ==========================================
-// KEYBOARD CONTROLS (OPTIONAL)
+// UI CONTROLS & UTILITIES
+// ==========================================
+
+// Toast notification system
+function showToast(message, duration = 2000) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  
+  toast.textContent = message;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, duration);
+}
+
+// Info panel toggle
+let infoVisible = true;
+const infoPanel = document.getElementById('info');
+const toggleButton = document.getElementById('toggle-info');
+const toggleIcon = document.getElementById('toggle-icon');
+
+function toggleInfo() {
+  infoVisible = !infoVisible;
+  if (infoPanel) {
+    infoPanel.classList.toggle('hidden', !infoVisible);
+  }
+  if (toggleIcon) {
+    toggleIcon.textContent = infoVisible ? '👁️' : '👁️‍🗨️';
+  }
+  showToast(infoVisible ? 'Controls shown' : 'Controls hidden', 1500);
+}
+
+// Toggle button click handler
+if (toggleButton) {
+  toggleButton.addEventListener('click', toggleInfo);
+}
+
+// Fullscreen toggle
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().then(() => {
+      showToast('Fullscreen mode', 1500);
+    }).catch(err => {
+      showToast('Fullscreen not available', 2000);
+    });
+  } else {
+    document.exitFullscreen();
+    showToast('Exited fullscreen', 1500);
+  }
+}
+
+// Screenshot function
+function takeScreenshot() {
+  try {
+    renderer.domElement.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = `planet-viewer-${Date.now()}.png`;
+      link.href = url;
+      link.click();
+      URL.revokeObjectURL(url);
+      showToast('Screenshot saved!', 2000);
+    });
+  } catch (err) {
+    showToast('Screenshot failed', 2000);
+  }
+}
+
+// ==========================================
+// KEYBOARD CONTROLS
 // ==========================================
 
 window.addEventListener('keydown', (event) => {
-  switch(event.key) {
+  // Prevent default for our custom keys
+  const customKeys = ['a', 'r', 'h', 'f', 's'];
+  if (customKeys.includes(event.key.toLowerCase())) {
+    event.preventDefault();
+  }
+
+  switch(event.key.toLowerCase()) {
     case 'a':
       controls.autoRotate = !controls.autoRotate;
-      console.log('Auto-rotate:', controls.autoRotate);
+      showToast(controls.autoRotate ? 'Auto-rotate: ON' : 'Auto-rotate: OFF', 1500);
       break;
     case 'r':
       // Reset camera position
-      camera.position.set(0, 0, 5);
+      camera.position.set(0, 0, isMobile ? 6 : 5);
       controls.reset();
+      showToast('Camera reset', 1500);
+      break;
+    case 'h':
+      toggleInfo();
+      break;
+    case 'f':
+      toggleFullscreen();
+      break;
+    case 's':
+      takeScreenshot();
       break;
   }
 });
 
+// Fullscreen change event
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) {
+    // Exited fullscreen, resize renderer
+    handleWindowResize();
+  }
+});
+
 console.log('🌍 Planet Viewer loaded!');
-console.log('Press "a" to toggle auto-rotate');
-console.log('Press "r" to reset camera');
+console.log('Keyboard shortcuts:');
+console.log('  A - Toggle auto-rotate');
+console.log('  R - Reset camera');
+console.log('  H - Toggle controls');
+console.log('  F - Fullscreen mode');
+console.log('  S - Take screenshot');
 
