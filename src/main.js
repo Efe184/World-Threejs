@@ -253,6 +253,41 @@ if (toggleButton) {
   toggleButton.addEventListener('click', toggleInfo);
 }
 
+// Control panel click handlers for mobile
+document.querySelectorAll('.control-item.clickable').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    const action = item.getAttribute('data-action');
+    
+    switch(action) {
+      case 'auto-rotate':
+        controls.autoRotate = !controls.autoRotate;
+        showToast(controls.autoRotate ? 'Auto-rotate: ON' : 'Auto-rotate: OFF', 1500);
+        break;
+      case 'reset-camera':
+        camera.position.set(0, 0, isMobile ? 6 : 5);
+        controls.reset();
+        showToast('Camera reset', 1500);
+        break;
+      case 'toggle-info':
+        toggleInfo();
+        break;
+      case 'fullscreen':
+        toggleFullscreen();
+        break;
+    }
+  });
+  
+  // Add touch feedback for mobile
+  item.addEventListener('touchstart', () => {
+    item.style.opacity = '0.7';
+  });
+  
+  item.addEventListener('touchend', () => {
+    item.style.opacity = '1';
+  });
+});
+
 // Fullscreen toggle
 function toggleFullscreen() {
   if (!document.fullscreenElement) {
