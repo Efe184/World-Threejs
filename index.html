@@ -47,6 +47,36 @@
         pointer-events: none;
       }
 
+      /* Make control items clickable */
+      #info .control-item {
+        pointer-events: auto;
+        cursor: default;
+      }
+
+      #info .control-item.clickable {
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      #info .control-item.clickable:hover {
+        color: rgba(255, 255, 255, 1);
+        transform: translateX(2px);
+      }
+
+      #info .control-item.clickable:active {
+        transform: scale(0.98);
+      }
+
+      #info .control-item.clickable .key {
+        background: rgba(74, 158, 255, 0.1);
+      }
+
+      #info .control-item.clickable:hover .key {
+        background: rgba(74, 158, 255, 0.2);
+        border-color: rgba(74, 158, 255, 0.6);
+        box-shadow: 0 0 15px rgba(74, 158, 255, 0.3);
+      }
+
       @media (max-width: 768px) {
         #info {
           top: 20px;
@@ -391,19 +421,19 @@
       
       <div class="section">
         <div class="section-title">Keyboard Shortcuts</div>
-        <div class="control-item">
+        <div class="control-item clickable" data-action="auto-rotate">
           <span class="key">A</span>
           <span>Toggle auto-rotate</span>
         </div>
-        <div class="control-item">
+        <div class="control-item clickable" data-action="reset-camera">
           <span class="key">R</span>
           <span>Reset camera</span>
         </div>
-        <div class="control-item">
+        <div class="control-item clickable" data-action="toggle-info">
           <span class="key">H</span>
           <span>Toggle controls</span>
         </div>
-        <div class="control-item">
+        <div class="control-item clickable" data-action="fullscreen">
           <span class="key">F</span>
           <span>Fullscreen</span>
         </div>
