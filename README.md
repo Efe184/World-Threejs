@@ -101,6 +101,9 @@ planet-viewer/
 |-----|----------|-------------|
 | `A` | Auto-rotate | Toggle automatic rotation |
 | `R` | Reset | Reset camera to initial position |
+| `H` | Toggle UI | Show/hide control panel |
+| `F` | Fullscreen | Enter/exit fullscreen mode |
+| `S` | Screenshot | Save current view as PNG |
 
 ## 🛠 Technologies
 
