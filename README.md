@@ -5,7 +5,7 @@ Interactive 3D Earth visualization built with THREE.js and Vite.
 ## 🚀 Live Demo
 
 **🌐 Vercel:** [https://world-threejs.vercel.app/](https://world-threejs.vercel.app/)  
-**📦 GitHub Pages:** [https://efe184.github.io/world-threejs/](https://efe184.github.io/world-threejs/)
+
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Efe184/World-Threejs)
 
