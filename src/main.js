@@ -156,16 +156,21 @@ scene.add(ambientLight);
 
 // Hide loading screen after textures load
 let loadedTextures = 0;
+let failedTextures = 0;
 const totalTextures = 5;
 
-loader.load("./textures/00_earthmap1k.jpg", () => checkAllLoaded());
-loader.load("./textures/01_earthbump1k.jpg", () => checkAllLoaded());
-loader.load("./textures/02_earthspec1k.jpg", () => checkAllLoaded());
-loader.load("./textures/03_earthlights1k.jpg", () => checkAllLoaded());
-loader.load("./textures/04_earthcloudmap.jpg", () => checkAllLoaded());
+const texturePaths = [
+  "./textures/00_earthmap1k.jpg",
+  "./textures/01_earthbump1k.jpg",
+  "./textures/02_earthspec1k.jpg",
+  "./textures/03_earthlights1k.jpg",
+  "./textures/04_earthcloudmap.jpg"
+];
 
 function checkAllLoaded() {
   loadedTextures++;
+  console.log(`Loaded textures: ${loadedTextures}/${totalTextures}`);
+  
   if (loadedTextures >= totalTextures) {
     const loadingElement = document.getElementById('loading');
     if (loadingElement) {
@@ -176,6 +181,33 @@ function checkAllLoaded() {
     }
   }
 }
+
+function onTextureError(url) {
+  failedTextures++;
+  console.error(`Failed to load texture: ${url}`);
+  console.error(`Failed textures: ${failedTextures}/${totalTextures}`);
+  
+  // Still increment loaded count to hide loading screen
+  checkAllLoaded();
+  
+  // Show error message if too many failures
+  if (failedTextures >= 3) {
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement) {
+      loadingElement.innerHTML = '<div class="spinner"></div><p>Error loading textures. Please refresh.</p>';
+    }
+  }
+}
+
+// Load textures with error handling
+texturePaths.forEach(path => {
+  loader.load(
+    path,
+    () => checkAllLoaded(),
+    undefined,
+    () => onTextureError(path)
+  );
+});
 
 // ==========================================
 // ANIMATION LOOP

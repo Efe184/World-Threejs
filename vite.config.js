@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/world-threejs/',
+  base: process.env.VERCEL ? '/' : '/world-threejs/',
   server: {
     port: 3000,
     open: true,
@@ -9,6 +9,12 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
+  publicDir: 'public',
 });
 
