@@ -115,10 +115,7 @@ This project is deployed on two platforms:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Efe184/World-Threejs)
 
-### GitHub Pages
-- **URL:** [https://efe184.github.io/world-threejs/](https://efe184.github.io/world-threejs/)
-- **Deploy command:** `npm run deploy`
-- **Branch:** `gh-pages`
+
 
 ### Local Development
 ```bash
