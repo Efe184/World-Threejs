@@ -2,6 +2,12 @@
 
 Interactive 3D Earth visualization built with THREE.js and Vite.
 
+## 🚀 Live Demo
+
+**🌐 Vercel:** [https://world-threejs.vercel.app/](https://world-threejs.vercel.app/)  
+**📦 GitHub Pages:** [https://efe184.github.io/world-threejs/](https://efe184.github.io/world-threejs/)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Efe184/World-Threejs)
 
 ## ✨ Features
 
@@ -96,6 +102,35 @@ planet-viewer/
 - **Vite** (v7.1.12) - Fast build tool
 - **WebGL** - Hardware-accelerated rendering
 - **GLSL Shaders** - Custom atmospheric effects
+
+## 🚀 Deployment
+
+This project is deployed on two platforms:
+
+### Vercel (Recommended)
+- **URL:** [https://world-threejs.vercel.app/](https://world-threejs.vercel.app/)
+- **Auto-deploy:** Enabled on push to `main` branch
+- **Environment:** Production optimized
+- **Deploy your own:** 
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Efe184/World-Threejs)
+
+
+
+### Local Development
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
 
 ## 📚 Learning Resources
 
